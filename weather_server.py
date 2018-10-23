@@ -21,7 +21,7 @@ while True:
     relhumidity = randrange(10, 60)
     order = i
 
-    sent_string = "{} {} {} {}".format(order, zipcode, temperature, relhumidity)
+    sent_string = "{} {} {} {}".format(zipcode, order, temperature, relhumidity)
     # this is not good practice to set a sleep here, but this is just to illustrate the behavior depicted in the zmq manual book.
     # if no wait is set, even if we start the client before, we'll loose thousands of published messages
     if ( i == 1 ):

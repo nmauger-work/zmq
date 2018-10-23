@@ -22,6 +22,7 @@ if zip_filter != False:
     if isinstance(zip_filter, bytes):
         zip_filter = zip_filter.decode('ascii')
     socket.setsockopt_string(zmq.SUBSCRIBE, zip_filter)
+    print('Filtering on {} zipcode'.format(zip_filter))
 else:
     socket.setsockopt_string(zmq.SUBSCRIBE, '')
 
@@ -29,7 +30,7 @@ else:
 total_temp = 0
 for update_nbr in range(50):
     string = socket.recv_string()
-    order, zipcode, temperature, relhumidity = string.split()
+    zipcode, order, temperature, relhumidity = string.split()
     total_temp += int(temperature)
     print("{} Current temp for zipcode {} is {}".format(order, zip_filter, temperature))
     sys.stdout.flush()
